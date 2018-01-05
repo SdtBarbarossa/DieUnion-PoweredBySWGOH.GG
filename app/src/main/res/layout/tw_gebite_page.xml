@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:id="@+id/twGebitePage">
+
+    <Button
+        android:id="@+id/twButtonTeamHinzu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/twMemberSpinner"
+        android:text="Team Hinzufügen" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/twButtonTeamHinzu"
+        android:text="Teams gesetzt: " />
+
+    <TextView
+        android:id="@+id/TeamsGesTxtView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView2"
+        android:layout_toEndOf="@+id/textView2"
+        android:text="01" />
+
+    <ListView
+        android:id="@+id/gebietsListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignEnd="@+id/twButtonTeamHinzu"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/textView2" />
+
+    <Button
+        android:id="@+id/twButtonTeamzurueck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView2"
+        android:layout_below="@id/twMemberSpinner"
+        android:text="Zurück" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/gebietsListView"
+        android:layout_centerHorizontal="true"
+        android:text="Gebiet : " />
+
+    <TextView
+        android:id="@+id/gebietsNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/gebietsListView"
+        android:layout_toEndOf="@+id/textView4"
+        android:text="Keins" />
+
+    <Spinner
+        android:id="@+id/twMemberSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/twButtonTeamHinzu"
+        android:layout_alignParentTop="true"
+        android:background="@android:drawable/spinner_background" />
+</RelativeLayout>

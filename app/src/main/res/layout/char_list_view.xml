@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/Besitzer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="Besitzer"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@android:color/black" />
+
+
+    <TextView
+        android:id="@+id/geartext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/charImage"
+        android:text="G: "
+        android:textColor="@android:color/black" />
+
+
+    <TextView
+        android:id="@+id/gear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/charImage"
+        android:layout_toEndOf="@id/geartext"
+        android:text="01"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:id="@+id/charName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Besitzer"
+        android:layout_toEndOf="@id/charImage"
+        android:text="Commander Luke Skywalker"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/perfektheittext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/charImage"
+        android:layout_marginStart="44dp"
+        android:text="P: "
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/perfektheit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/charImage"
+        android:layout_toEndOf="@+id/perfektheittext"
+        android:text="80"
+        android:textColor="@android:color/black" />
+
+    <ImageView
+        android:id="@+id/charImage"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
+        android:layout_below="@+id/nostar1"
+        app:srcCompat="@mipmap/ic_launcher_round" />
+
+    <ImageView
+        android:id="@+id/gearImage"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
+        android:layout_below="@+id/nostar1" />
+
+    <ImageView
+        android:id="@+id/circleImage"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
+        android:layout_below="@+id/nostar1"
+        app:srcCompat="@drawable/circle" />
+
+    <ImageView
+        android:id="@+id/nostar1"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_below="@+id/Besitzer"
+        app:srcCompat="@drawable/nostar" />
+
+    <ImageView
+        android:id="@+id/nostar2"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_below="@+id/Besitzer"
+        android:layout_toEndOf="@id/nostar1"
+        app:srcCompat="@drawable/nostar" />
+
+    <ImageView
+        android:id="@+id/nostar3"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_toEndOf="@id/nostar2"
+        android:layout_below="@+id/Besitzer"
+        app:srcCompat="@drawable/nostar" />
+
+    <ImageView
+        android:id="@+id/nostar4"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_toEndOf="@id/nostar3"
+        android:layout_below="@+id/Besitzer"
+        app:srcCompat="@drawable/nostar" />
+
+    <ImageView
+        android:id="@+id/nostar5"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_toEndOf="@id/nostar4"
+        android:layout_below="@+id/Besitzer"
+        app:srcCompat="@drawable/nostar" />
+
+    <ImageView
+        android:id="@+id/nostar6"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_toEndOf="@id/nostar5"
+        android:layout_below="@+id/Besitzer"
+        app:srcCompat="@drawable/nostar" />
+
+    <ImageView
+        android:id="@+id/nostar7"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_toEndOf="@id/nostar6"
+        android:layout_below="@+id/Besitzer"
+        app:srcCompat="@drawable/nostar" />
+
+    <ImageView
+        android:id="@+id/selectedImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:layout_below="@+id/charName"
+        android:layout_toEndOf="@+id/charImage"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/selected" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/powerTxtView"
+        android:layout_alignBottom="@+id/powerTxtView"
+        android:layout_toEndOf="@+id/charImage"
+        android:textColor="@android:color/black"
+        android:text="Power:" />
+
+    <TextView
+        android:id="@+id/powerTxtView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/charImage"
+        android:layout_toEndOf="@+id/textView5"
+        android:textColor="@android:color/black"
+        android:text="1500" />
+
+</RelativeLayout>

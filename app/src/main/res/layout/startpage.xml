@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:id="@+id/startPage">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Willkommen bei der Union der Helden!" />
+
+    <TextView
+        android:id="@+id/textGildenInfos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView1"
+        android:text="GildenInfos:" />
+
+    <TextView
+        android:id="@+id/txtsync"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Syncronisation : "
+        android:layout_below="@+id/textGildenInfos" />
+
+    <TextView
+        android:id="@+id/textSyncBool"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ausstehend"
+        android:layout_toEndOf="@+id/txtsync"
+        android:layout_below="@+id/textGildenInfos"/>
+
+</RelativeLayout>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/teamBesitzer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="Besitzer"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@android:color/black" />
+
+    <include
+        android:id="@+id/char1"
+        layout="@layout/char_for_team_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/teamBesitzer"/>
+
+    <include
+        android:id="@+id/char2"
+        layout="@layout/char_for_team_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/char1"
+        android:layout_marginLeft="5dp"
+        android:layout_below="@id/teamBesitzer"/>
+
+    <include
+        android:id="@+id/char3"
+        layout="@layout/char_for_team_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/char2"
+        android:layout_marginLeft="5dp"
+        android:layout_below="@id/teamBesitzer"/>
+
+    <include
+        android:id="@+id/char4"
+        layout="@layout/char_for_team_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/char3"
+        android:layout_marginLeft="5dp"
+        android:layout_below="@id/teamBesitzer"/>
+
+    <include
+        android:id="@+id/char5"
+        layout="@layout/char_for_team_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/char4"
+        android:layout_marginLeft="5dp"
+        android:layout_below="@id/teamBesitzer"/>
+
+    <TextView
+        android:id="@+id/teamArenaRang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/char2"
+        android:layout_toEndOf="@+id/char2"
+        android:text="" />
+
+</RelativeLayout>

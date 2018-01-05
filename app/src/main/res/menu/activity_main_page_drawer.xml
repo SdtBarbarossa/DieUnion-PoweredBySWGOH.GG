@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_mainpage"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Gildeninfos" />
+        <item
+            android:id="@+id/nav_charsearch"
+            android:icon="@drawable/obiwan"
+            android:title="Charaktersuche" />
+        <item
+            android:id="@+id/nav_legendary"
+            android:icon="@drawable/lukeskywalker1"
+            android:title="Legendary" />
+        <item
+            android:id="@+id/nav_haat"
+            android:icon="@drawable/aaticon"
+            android:title="hAAT" />
+        <item
+            android:id="@+id/nav_arena"
+            android:icon="@drawable/darthvader"
+            android:title="ArenaTeams" />
+        <item
+            android:id="@+id/nav_squad"
+            android:icon="@drawable/yoda"
+            android:title="TeamSuche" />
+        <item
+            android:id="@+id/nav_tw"
+            android:icon="@drawable/yoda"
+            android:title="TW Planner" />
+    </group>
+
+</menu>

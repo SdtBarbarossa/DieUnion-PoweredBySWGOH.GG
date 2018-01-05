@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:id="@+id/squadPage">
+
+    <TextView
+        android:id="@+id/textTeam1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/HinzuButton"
+        android:text="Team:"
+        android:textColor="#000000" />
+
+    <Spinner
+        android:id="@+id/spinnerTeam1"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/textTeam1"
+        android:background="@android:drawable/spinner_background"
+        android:textColor="#000000" />
+
+    <ListView
+        android:id="@+id/teamListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/spinnerTeam1"
+        />
+
+    <Button
+        android:id="@+id/HinzuButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:text="Hinzufügen" />
+
+    <Button
+        android:id="@+id/EntfernenButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:text="Entfernen" />
+
+</RelativeLayout>
