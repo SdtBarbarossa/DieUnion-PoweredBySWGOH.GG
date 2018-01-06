@@ -49,7 +49,6 @@ public class MainPage extends AppCompatActivity
     public boolean getNewDataSuceed = false;
     public GildenMember selectedGildenMember;
     public Einstellungen myEinstellungen = null;
-    public ArrayList<haatTeam> squads = null;
     public TWPlan twPlan = null;
     public TWGebiet currentTwGebiet;
     public TWTeam currentTWTeam;
@@ -355,12 +354,16 @@ public class MainPage extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
+
+        int count = getFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
             super.onBackPressed();
+            //additional code
+        } else {
+            getFragmentManager().popBackStack();
         }
+
     }
 
     @Override
@@ -428,7 +431,7 @@ public class MainPage extends AppCompatActivity
     public void showMainPage(){
         FragmentManager fragmentManager = getSupportFragmentManager();
         startPage startpage = new startPage();
-        fragmentManager.beginTransaction().replace(R.id.mainFrame, startpage).commit();
+        fragmentManager.beginTransaction().replace(R.id.mainFrame, startpage).addToBackStack("MainPage").commit();
 
         Thread thread = new Thread(new Runnable() {
 
@@ -480,7 +483,7 @@ public class MainPage extends AppCompatActivity
     public void showCharSearchUi(){
         FragmentManager fragmentManager = getSupportFragmentManager();
         CharSearchFragment charSearch = new CharSearchFragment();
-        fragmentManager.beginTransaction().replace(R.id.mainFrame, charSearch).commit();
+        fragmentManager.beginTransaction().replace(R.id.mainFrame, charSearch).addToBackStack("CharSearchUI").commit();
         fragmentManager.executePendingTransactions();
 
         Button btSuchen = findViewById(R.id.btSuchen);
@@ -507,29 +510,15 @@ public class MainPage extends AppCompatActivity
     public void showTWUi(){
         FragmentManager fragmentManager = getSupportFragmentManager();
         TWPlannerFragment twplanner = new TWPlannerFragment();
-        fragmentManager.beginTransaction().replace(R.id.mainFrame, twplanner).commit();
+        twplanner.SetArguments(gildenInfos, this);
+        fragmentManager.beginTransaction().replace(R.id.mainFrame, twplanner).addToBackStack("TWUI").commit();
         fragmentManager.executePendingTransactions();
-
-        Button btTWVerwalten = findViewById(R.id.twVerwaltenButton);
-        btTWVerwalten.setOnClickListener(this);
-
-        Button btTWCommand = findViewById(R.id.twBefehlButton);
-        btTWCommand.setOnClickListener(this);
-
-        twPlanLaden();
-
-        Spinner spinTWGebite = findViewById(R.id.twMainSpinner);
-
-        twGebiteSpinnerAdapter twGebiteAdapter = new twGebiteSpinnerAdapter(this,android.R.layout.simple_spinner_item, twPlan);
-        spinTWGebite.setAdapter(twGebiteAdapter);
-        spinTWGebite.setOnItemSelectedListener(this);
-
     }
 
     public void showTWCommandUi(){
         FragmentManager fragmentManager = getSupportFragmentManager();
         TWCommandFragment twCommandFragment = new TWCommandFragment();
-        fragmentManager.beginTransaction().replace(R.id.mainFrame, twCommandFragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.mainFrame, twCommandFragment).addToBackStack("TWCommandUI").commit();
         fragmentManager.executePendingTransactions();
 
         Button btTWCommandZurueck = findViewById(R.id.twCommandGivenButtonZurueck);
@@ -560,60 +549,15 @@ public class MainPage extends AppCompatActivity
     public void showTwGebietUI(TWGebiet twGebiet){
         FragmentManager fragmentManager = getSupportFragmentManager();
         TWGebiteFragment twGebieteFragment = new TWGebiteFragment();
-        fragmentManager.beginTransaction().replace(R.id.mainFrame, twGebieteFragment).commit();
+        twGebieteFragment.SetArguments(gildenInfos, this, twGebiet);
+        fragmentManager.beginTransaction().replace(R.id.mainFrame, twGebieteFragment).addToBackStack("TwGebieteUI").commit();
         fragmentManager.executePendingTransactions();
-
-        Spinner spinMember = findViewById(R.id.twMemberSpinner);
-        ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, gildenInfos.getMemberListe());
-        spinMember.setAdapter(adapter);
-
-        Button btTWGebieteZurueck = findViewById(R.id.twButtonTeamzurueck);
-        btTWGebieteZurueck.setOnClickListener(this);
-
-        Button btTWGebieteHinzu = findViewById(R.id.twButtonTeamHinzu);
-        btTWGebieteHinzu.setOnClickListener(this);
-
-        TextView twGebietsName = findViewById(R.id.gebietsNameTextView);
-        twGebietsName.setText(twGebiet.GebietsName);
-
-        TextView twGebietTeamAnzahl = findViewById(R.id.TeamsGesTxtView);
-        twGebietTeamAnzahl.setText("" + twGebiet.teams.size());
-
-        //ALLE Charaktere in der Liste
-        ListView listGebietTeamsView = findViewById(R.id.gebietsListView);
-        listGebietTeamsView.setAdapter(new GebieteTeamListAdapter(MainPage.this, twGebiet.teams));
-
-        listGebietTeamsView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?>adapter,View v, int position, long l){
-                currentTWTeamToDelete = (TWTeam) adapter.getItemAtPosition(position);
-                //
-                new AlertDialog.Builder(MainPage.this)
-                        .setTitle("Wirklich?")
-                        .setMessage("Team von " + currentTWTeamToDelete.charaktere.get(0).besitzer + " löschen?")
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                TWGebiet currentGebite = MainPage.this.currentTwGebiet;
-                                currentGebite.teams.remove(MainPage.this.currentTWTeamToDelete);
-                                MainPage.this.twPlanSpeichern();
-                                ListView charSelectorListView = findViewById(R.id.gebietsListView);
-                                ((BaseAdapter) charSelectorListView.getAdapter()).notifyDataSetChanged();
-                                Toast.makeText(MainPage.this, "Gelöscht!", Toast.LENGTH_SHORT).show();
-                            }})
-                        .setNegativeButton(android.R.string.no, null).show();
-                //
-
-            }
-        });
-
     }
 
     public void showTWCharSelectorUI(MemberListe member){
         FragmentManager fragmentManager = getSupportFragmentManager();
         TWCharSelectorFragment twCharSelectorFragment = new TWCharSelectorFragment();
-        fragmentManager.beginTransaction().replace(R.id.mainFrame, twCharSelectorFragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.mainFrame, twCharSelectorFragment).addToBackStack("TWCharSelectorUI").commit();
         fragmentManager.executePendingTransactions();
 
         Button twCharSelectorButtonZurueck = findViewById(R.id.twCommandButtonZurueck);
@@ -668,7 +612,7 @@ public class MainPage extends AppCompatActivity
     public void showArenaUi(){
         FragmentManager fragmentManager = getSupportFragmentManager();
         ArenaFragment arenaFragment = new ArenaFragment();
-        fragmentManager.beginTransaction().replace(R.id.mainFrame, arenaFragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.mainFrame, arenaFragment).addToBackStack("showArenaUI").commit();
         fragmentManager.executePendingTransactions();
 
         ArrayList<ArenaTeamListe> findAllTeams = new ArrayList<ArenaTeamListe>();
@@ -697,196 +641,23 @@ public class MainPage extends AppCompatActivity
     public void showSquadUi(){
         FragmentManager fragmentManager = getSupportFragmentManager();
         SquadFragment squadFragment = new SquadFragment();
-        fragmentManager.beginTransaction().replace(R.id.mainFrame, squadFragment).commit();
+        squadFragment.SetArguments(gildenInfos, this);
+        fragmentManager.beginTransaction().replace(R.id.mainFrame, squadFragment).addToBackStack("showSquadUi").commit();
         fragmentManager.executePendingTransactions();
-
-        Spinner spinTeam1 = findViewById(R.id.spinnerTeam1);
-
-        loadSquads();
-
-        ArrayAdapter adapterHaat = new ArrayAdapter(this,android.R.layout.simple_spinner_item, squads);
-        spinTeam1.setAdapter(adapterHaat);
-        spinTeam1.setOnItemSelectedListener(this);
-
-        Button entfernenButton = findViewById(R.id.EntfernenButton);
-        entfernenButton.setOnClickListener(this);
-
-        Button hinzuButton = findViewById(R.id.HinzuButton);
-        hinzuButton.setOnClickListener(this);
-
     }
 
     public void showSquadAdderUi(){
         FragmentManager fragmentManager = getSupportFragmentManager();
         SquadPickerFragment squadPickerFragment = new SquadPickerFragment();
-        fragmentManager.beginTransaction().replace(R.id.mainFrame, squadPickerFragment).commit();
+        squadPickerFragment.SetArguments(gildenInfos, this);
+        fragmentManager.beginTransaction().replace(R.id.mainFrame, squadPickerFragment).addToBackStack("SquadAdderUI").commit();
         fragmentManager.executePendingTransactions();
-
-        Button AbbruchButton = findViewById(R.id.SquadPickerButtonAbort);
-        AbbruchButton.setOnClickListener(this);
-
-        Button hinzuButton = findViewById(R.id.SquadPickerButtonAdd);
-        hinzuButton.setOnClickListener(this);
-
-        String[] allChars =  {"Ahsoka Tano"
-        ,"Aayla Secura"
-        ,"Admiral Ackbar"
-        ,"Ahsoka Tano (Fulcrum)"
-        ,"Asajj Ventress"
-        ,"B2 Super Battle Droid"
-        ,"Barriss Offee"
-        ,"Baze Malbus"
-        ,"BB-8"
-        ,"Biggs Darklighter"
-        ,"Bistan"
-        ,"Boba Fett"
-        ,"Bodhi Rook"
-        ,"Cad Bane"
-        ,"Captain Han Solo"
-        ,"Captain Phasma"
-        ,"Cassian Andor"
-        ,"CC-2224 \"Cody\""
-        ,"Chief Chirpa"
-        ,"Chief Nebit"
-        ,"Chirrut Îmwe"
-        ,"Chopper"
-        ,"Clone Sergeant - Phase I"
-        ,"Clone Wars Chewbacca"
-        ,"Colonel Starck"
-        ,"Commander Luke Skywalker"
-        ,"Coruscant Underworld Police"
-        ,"Count Dooku"
-        ,"CT-21-0408 \"Echo\""
-        ,"CT-5555 \"Fives\""
-        ,"CT-7567 \"Rex\""
-        ,"Darth Maul"
-        ,"Darth Nihilus"
-        ,"Darth Sidious"
-        ,"Darth Vader"
-        ,"Dathcha"
-        ,"Death Trooper"
-        ,"Dengar"
-        ,"Director Krennic"
-        ,"Eeth Koth"
-        ,"Emperor Palpatine"
-        ,"Ewok Elder"
-        ,"Ewok Scout"
-        ,"Ezra Bridger"
-        ,"Finn"
-        ,"First Order Officer"
-        ,"First Order SF TIE Pilot"
-        ,"First Order Stormtrooper"
-        ,"First Order TIE Pilot"
-        ,"Gamorrean Guard"
-        ,"Gar Saxon"
-        ,"Garazeb \"Zeb\" Orrelios"
-        ,"General Grievous"
-        ,"General Kenobi"
-        ,"General Veers"
-        ,"Geonosian Soldier"
-        ,"Geonosian Spy"
-        ,"Grand Admiral Thrawn"
-        ,"Grand Master Yoda"
-        ,"Grand Moff Tarkin"
-        ,"Greedo"
-        ,"Han Solo"
-        ,"Hera Syndulla"
-        ,"Hermit Yoda"
-        ,"HK-47"
-        ,"Hoth Rebel Scout"
-        ,"Hoth Rebel Soldier"
-        ,"IG-100 MagnaGuard"
-        ,"IG-86 Sentinel Droid"
-        ,"IG-88"
-        ,"Ima-Gun Di"
-        ,"Imperial Probe Droid"
-        ,"Imperial Super Commando"
-        ,"Jawa"
-        ,"Jawa Engineer"
-        ,"Jawa Scavenger"
-        ,"Jedi Consular"
-        ,"Jedi Knight Anakin"
-        ,"Jedi Knight Guardian"
-        ,"Jyn Erso"
-        ,"K-2SO"
-        ,"Kanan Jarrus"
-        ,"Kit Fisto"
-        ,"Kylo Ren"
-        ,"Kylo Ren (Unmasked)"
-        ,"Lando Calrissian"
-        ,"Lobot"
-        ,"Logray"
-        ,"Luke Skywalker (Farmboy)"
-        ,"Luminara Unduli"
-        ,"Mace Windu"
-        ,"Magmatrooper"
-        ,"Mob Enforcer"
-        ,"Mother Talzin"
-        ,"Nightsister Acolyte"
-        ,"Nightsister Initiate"
-        ,"Nightsister Spirit"
-        ,"Nightsister Zombie"
-        ,"Nute Gunray"
-        ,"Obi-Wan Kenobi (Old Ben)"
-        ,"Old Daka"
-        ,"Pao"
-        ,"Paploo"
-        ,"Plo Koon"
-        ,"Poe Dameron"
-        ,"Poggle the Lesser"
-        ,"Princess Leia"
-        ,"Qui-Gon Jinn"
-        ,"R2-D2"
-        ,"Rebel Officer Leia Organa"
-        ,"Resistance Pilot"
-        ,"Resistance Trooper"
-        ,"Rey (Scavenger)"
-        ,"Rey (Jedi Training)"
-        ,"Royal Guard"
-        ,"Sabine Wren"
-        ,"Savage Opress"
-        ,"Scarif Rebel Pathfinder"
-        ,"Shoretrooper"
-        ,"Sith Assassin"
-        ,"Sith Trooper"
-        ,"Snowtrooper"
-        ,"Stormtrooper"
-        ,"Stormtrooper Han"
-        ,"Sun Fac"
-        ,"Talia"
-        ,"Teebo"
-        ,"TIE Fighter Pilot"
-        ,"Tusken Raider"
-        ,"Tusken Shaman"
-        ,"Ugnaught"
-        ,"URoRRuR'R'R"
-        ,"Veteran Smuggler Chewbacca"
-        ,"Veteran Smuggler Han Solo"
-        ,"Wampa"
-        ,"Wedge Antilles"
-        ,"Wicket"
-        ,"Zam Wesell"};
-
-        Spinner spinnerChar1 = findViewById(R.id.spinnerChar1);
-        Spinner spinnerChar2 = findViewById(R.id.spinnerChar2);
-        Spinner spinnerChar3 = findViewById(R.id.spinnerChar3);
-        Spinner spinnerChar4 = findViewById(R.id.spinnerChar4);
-        Spinner spinnerChar5 = findViewById(R.id.spinnerChar5);
-
-        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this,   android.R.layout.simple_spinner_item, allChars);
-        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
-        spinnerChar1.setAdapter(spinnerArrayAdapter);
-        spinnerChar2.setAdapter(spinnerArrayAdapter);
-        spinnerChar3.setAdapter(spinnerArrayAdapter);
-        spinnerChar4.setAdapter(spinnerArrayAdapter);
-        spinnerChar5.setAdapter(spinnerArrayAdapter);
-
     }
 
     public void showAatUi(){
         FragmentManager fragmentManager = getSupportFragmentManager();
         AatFragment aatFragment = new AatFragment();
-        fragmentManager.beginTransaction().replace(R.id.mainFrame, aatFragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.mainFrame, aatFragment).addToBackStack("AatUi").commit();
         fragmentManager.executePendingTransactions();
 
         Spinner spinTeam1 = findViewById(R.id.spinnerTeam1);
@@ -1022,33 +793,15 @@ public class MainPage extends AppCompatActivity
     public void showLegendaryUi(){
         FragmentManager fragmentManager = getSupportFragmentManager();
         LegendaryFragment legendary = new LegendaryFragment();
-        fragmentManager.beginTransaction().replace(R.id.mainFrame, legendary).commit();
+        legendary.SetArguments(gildenInfos, this);
+        fragmentManager.beginTransaction().replace(R.id.mainFrame, legendary).addToBackStack("LegendaryUi").commit();
         fragmentManager.executePendingTransactions();
-
-        Spinner spinMember = findViewById(R.id.spinnerMember);
-        ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, gildenInfos.getMemberListe());
-        spinMember.setAdapter(adapter);
-
-        Spinner spinLegendary = findViewById(R.id.spinnerTeam);
-
-        ArrayList<String> Legendarys = new ArrayList<String>();
-        Legendarys.add("Commander Luke Skywalker");
-        Legendarys.add("Rey (Jedi Schülerin)");
-        Legendarys.add("Thrawn");
-        Legendarys.add("R2-D2");
-        Legendarys.add("BB8");
-
-        ArrayAdapter adapterLegendary = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Legendarys);
-        spinLegendary.setAdapter(adapterLegendary);
-        spinLegendary.setOnItemSelectedListener(this);
-        spinMember.setOnItemSelectedListener(this);
-
     }
 
     public void showSettingsUi(){
         FragmentManager fragmentManager = getSupportFragmentManager();
         EinstellungenFragment einstellungen = new EinstellungenFragment();
-        fragmentManager.beginTransaction().replace(R.id.mainFrame, einstellungen).commit();
+        fragmentManager.beginTransaction().replace(R.id.mainFrame, einstellungen).addToBackStack("SettingsUi").commit();
         fragmentManager.executePendingTransactions();
 
         try {
@@ -1226,49 +979,8 @@ public class MainPage extends AppCompatActivity
 
                         ImageView gearImage = (ImageView)nowView.findViewById(R.id.gearImage1);
 
-                        switch(CLSList.get(i).getGear()){
-                            case 0:
-                                break;
-                            case 1:
-                                gearImage.setImageResource(R.drawable.gearicong1);
-                                break;
-                            case 2:
-                                gearImage.setImageResource(R.drawable.gearicong2);
-                                break;
-                            case 3:
-                                gearImage.setImageResource(R.drawable.gearicong3);
-                                break;
-                            case 4:
-                                gearImage.setImageResource(R.drawable.gearicong4);
-                                break;
-                            case 5:
-                                gearImage.setImageResource(R.drawable.gearicong5);
-                                break;
-                            case 6:
-                                gearImage.setImageResource(R.drawable.gearicong6);
-                                break;
-                            case 7:
-                                gearImage.setImageResource(R.drawable.gearicong7);
-                                break;
-                            case 8:
-                                gearImage.setImageResource(R.drawable.gearicong8);
-                                break;
-                            case 9:
-                                gearImage.setImageResource(R.drawable.gearicong9);
-                                break;
-                            case 10:
-                                gearImage.setImageResource(R.drawable.gearicong10);
-                                break;
-                            case 11:
-                                gearImage.setImageResource(R.drawable.gearicong11);
-                                break;
-                            case 12:
-                                gearImage.setImageResource(R.drawable.gearicong12);
-                                break;
-                            default:
-                                break;
-                        }
-
+                        if(CLSList.get(position).gearImageID() != 0)
+                            gearImage.setImageResource(CLSList.get(position).gearImageID());
 
                         ArrayList<ImageView> imageStarList = new ArrayList<ImageView>();
                         imageStarList.add((ImageView) nowView.findViewById(R.id.nostar11));
@@ -1376,49 +1088,8 @@ public class MainPage extends AppCompatActivity
 
                         ImageView gearImage = (ImageView)nowView.findViewById(R.id.gearImage1);
 
-                        switch(ReyList.get(i).getGear()){
-                            case 0:
-                                break;
-                            case 1:
-                                gearImage.setImageResource(R.drawable.gearicong1);
-                                break;
-                            case 2:
-                                gearImage.setImageResource(R.drawable.gearicong2);
-                                break;
-                            case 3:
-                                gearImage.setImageResource(R.drawable.gearicong3);
-                                break;
-                            case 4:
-                                gearImage.setImageResource(R.drawable.gearicong4);
-                                break;
-                            case 5:
-                                gearImage.setImageResource(R.drawable.gearicong5);
-                                break;
-                            case 6:
-                                gearImage.setImageResource(R.drawable.gearicong6);
-                                break;
-                            case 7:
-                                gearImage.setImageResource(R.drawable.gearicong7);
-                                break;
-                            case 8:
-                                gearImage.setImageResource(R.drawable.gearicong8);
-                                break;
-                            case 9:
-                                gearImage.setImageResource(R.drawable.gearicong9);
-                                break;
-                            case 10:
-                                gearImage.setImageResource(R.drawable.gearicong10);
-                                break;
-                            case 11:
-                                gearImage.setImageResource(R.drawable.gearicong11);
-                                break;
-                            case 12:
-                                gearImage.setImageResource(R.drawable.gearicong12);
-                                break;
-                            default:
-                                break;
-                        }
-
+                        if(ReyList.get(position).gearImageID() != 0)
+                            gearImage.setImageResource(ReyList.get(position).gearImageID());
 
                         ArrayList<ImageView> imageStarList = new ArrayList<ImageView>();
                         imageStarList.add((ImageView) nowView.findViewById(R.id.nostar11));
@@ -1531,49 +1202,8 @@ public class MainPage extends AppCompatActivity
 
                         ImageView gearImage = (ImageView)nowView.findViewById(R.id.gearImage1);
 
-                        switch(bb8List.get(i).getGear()){
-                            case 0:
-                                break;
-                            case 1:
-                                gearImage.setImageResource(R.drawable.gearicong1);
-                                break;
-                            case 2:
-                                gearImage.setImageResource(R.drawable.gearicong2);
-                                break;
-                            case 3:
-                                gearImage.setImageResource(R.drawable.gearicong3);
-                                break;
-                            case 4:
-                                gearImage.setImageResource(R.drawable.gearicong4);
-                                break;
-                            case 5:
-                                gearImage.setImageResource(R.drawable.gearicong5);
-                                break;
-                            case 6:
-                                gearImage.setImageResource(R.drawable.gearicong6);
-                                break;
-                            case 7:
-                                gearImage.setImageResource(R.drawable.gearicong7);
-                                break;
-                            case 8:
-                                gearImage.setImageResource(R.drawable.gearicong8);
-                                break;
-                            case 9:
-                                gearImage.setImageResource(R.drawable.gearicong9);
-                                break;
-                            case 10:
-                                gearImage.setImageResource(R.drawable.gearicong10);
-                                break;
-                            case 11:
-                                gearImage.setImageResource(R.drawable.gearicong11);
-                                break;
-                            case 12:
-                                gearImage.setImageResource(R.drawable.gearicong12);
-                                break;
-                            default:
-                                break;
-                        }
-
+                        if(bb8List.get(position).gearImageID() != 0)
+                            gearImage.setImageResource(bb8List.get(position).gearImageID());
 
                         ArrayList<ImageView> imageStarList = new ArrayList<ImageView>();
                         imageStarList.add((ImageView) nowView.findViewById(R.id.nostar11));
@@ -1716,49 +1346,8 @@ public class MainPage extends AppCompatActivity
 
                         ImageView gearImage = (ImageView)nowView.findViewById(R.id.gearImage1);
 
-                        switch(r2List.get(i).getGear()){
-                            case 0:
-                                break;
-                            case 1:
-                                gearImage.setImageResource(R.drawable.gearicong1);
-                                break;
-                            case 2:
-                                gearImage.setImageResource(R.drawable.gearicong2);
-                                break;
-                            case 3:
-                                gearImage.setImageResource(R.drawable.gearicong3);
-                                break;
-                            case 4:
-                                gearImage.setImageResource(R.drawable.gearicong4);
-                                break;
-                            case 5:
-                                gearImage.setImageResource(R.drawable.gearicong5);
-                                break;
-                            case 6:
-                                gearImage.setImageResource(R.drawable.gearicong6);
-                                break;
-                            case 7:
-                                gearImage.setImageResource(R.drawable.gearicong7);
-                                break;
-                            case 8:
-                                gearImage.setImageResource(R.drawable.gearicong8);
-                                break;
-                            case 9:
-                                gearImage.setImageResource(R.drawable.gearicong9);
-                                break;
-                            case 10:
-                                gearImage.setImageResource(R.drawable.gearicong10);
-                                break;
-                            case 11:
-                                gearImage.setImageResource(R.drawable.gearicong11);
-                                break;
-                            case 12:
-                                gearImage.setImageResource(R.drawable.gearicong12);
-                                break;
-                            default:
-                                break;
-                        }
-
+                        if(r2List.get(position).gearImageID() != 0)
+                            gearImage.setImageResource(r2List.get(position).gearImageID());
 
                         ArrayList<ImageView> imageStarList = new ArrayList<ImageView>();
                         imageStarList.add((ImageView) nowView.findViewById(R.id.nostar11));
@@ -1883,48 +1472,8 @@ public class MainPage extends AppCompatActivity
 
                         ImageView gearImage = (ImageView)nowView.findViewById(R.id.gearImage1);
 
-                        switch(phoenixList.get(i).getGear()){
-                            case 0:
-                                break;
-                            case 1:
-                                gearImage.setImageResource(R.drawable.gearicong1);
-                                break;
-                            case 2:
-                                gearImage.setImageResource(R.drawable.gearicong2);
-                                break;
-                            case 3:
-                                gearImage.setImageResource(R.drawable.gearicong3);
-                                break;
-                            case 4:
-                                gearImage.setImageResource(R.drawable.gearicong4);
-                                break;
-                            case 5:
-                                gearImage.setImageResource(R.drawable.gearicong5);
-                                break;
-                            case 6:
-                                gearImage.setImageResource(R.drawable.gearicong6);
-                                break;
-                            case 7:
-                                gearImage.setImageResource(R.drawable.gearicong7);
-                                break;
-                            case 8:
-                                gearImage.setImageResource(R.drawable.gearicong8);
-                                break;
-                            case 9:
-                                gearImage.setImageResource(R.drawable.gearicong9);
-                                break;
-                            case 10:
-                                gearImage.setImageResource(R.drawable.gearicong10);
-                                break;
-                            case 11:
-                                gearImage.setImageResource(R.drawable.gearicong11);
-                                break;
-                            case 12:
-                                gearImage.setImageResource(R.drawable.gearicong12);
-                                break;
-                            default:
-                                break;
-                        }
+                        if(phoenixList.get(position).gearImageID() != 0)
+                            gearImage.setImageResource(phoenixList.get(position).gearImageID());
 
 
                         ArrayList<ImageView> imageStarList = new ArrayList<ImageView>();
@@ -2007,61 +1556,6 @@ public class MainPage extends AppCompatActivity
 
     }
 
-    public void loadSquads(){
-
-        try {
-            // Restore preferences
-            SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-            String persistJson = settings.getString("squadsJson", "");
-            ObjectMapper mapper = new ObjectMapper();
-            ArrayList<haatTeam> mySquads = mapper.readValue(persistJson, new TypeReference<ArrayList<haatTeam>>() {});
-            squads = mySquads;
-            if(squads == null)
-                throw new Exception("squads nicht gefunden");
-        }catch(Exception ex) {
-            if(squads == null) {
-                ArrayList<haatTeam> haatTeams = new ArrayList<haatTeam>();
-                //Rancor
-
-                //Phoenix
-                ArrayList<TeamChar> PhoenixTeam = new ArrayList<TeamChar>();
-                PhoenixTeam.add(new TeamChar("Hera Syndulla"));
-                PhoenixTeam.add(new TeamChar("Ezra Bridger"));
-                PhoenixTeam.add(new TeamChar("Kanan Jarrus"));
-                PhoenixTeam.add(new TeamChar("Garazeb \"Zeb\" Orrelios"));
-                PhoenixTeam.add(new TeamChar("Chopper"));
-                haatTeams.add(new haatTeam("Phönix", PhoenixTeam));
-
-                squads = haatTeams;
-
-            }
-        }
-
-
-
-    }
-
-    public void saveSquads(){
-
-        try {
-            //Object to JSON in String
-            ObjectMapper mapper = new ObjectMapper();
-            String jsonString = mapper.writeValueAsString(squads);
-            ArrayList<haatTeam> mySquads = mapper.readValue(jsonString, new TypeReference<ArrayList<haatTeam>>(){});
-            squads = mySquads;
-
-            // We need an Editor object to make preference changes.
-            // All objects are from android.context.Context
-            SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-            SharedPreferences.Editor editor = settings.edit();
-            editor.putString("squadsJson", mapper.writeValueAsString(squads));
-            editor.commit();
-        } catch (Exception exep) {
-            exep.printStackTrace();
-        }
-
-    }
-
     @Override
     public void onClick(View v) {
 
@@ -2117,71 +1611,6 @@ public class MainPage extends AppCompatActivity
 
             }
             showMainPage();
-        } else if(v == findViewById(R.id.EntfernenButton)){
-
-
-            Spinner spinTeam1 = findViewById(R.id.spinnerTeam1);
-
-            haatTeam selectedSquad = (haatTeam) spinTeam1.getSelectedItem();
-
-            if(squads.size() > 1) {
-                squads.remove(selectedSquad);
-            }
-            else{
-                Toast.makeText(this, "Ein Team muss bleiben!", Toast.LENGTH_LONG).show();
-            }
-
-            ArrayAdapter adapterHaat = new ArrayAdapter(this,android.R.layout.simple_spinner_item, squads);
-            spinTeam1.setAdapter(adapterHaat);
-
-            saveSquads();
-
-        } else if( v == findViewById(R.id.HinzuButton)){
-            showSquadAdderUi();
-        } else if(v == findViewById(R.id.SquadPickerButtonAbort)){
-            showSquadUi();
-        } else if(v == findViewById(R.id.SquadPickerButtonAdd)){
-
-            Spinner spinnerChar1 = findViewById(R.id.spinnerChar1);
-            Spinner spinnerChar2 = findViewById(R.id.spinnerChar2);
-            Spinner spinnerChar3 = findViewById(R.id.spinnerChar3);
-            Spinner spinnerChar4 = findViewById(R.id.spinnerChar4);
-            Spinner spinnerChar5 = findViewById(R.id.spinnerChar5);
-
-            EditText teamName = findViewById(R.id.teamNameEditText);
-
-            //GenereateTeam
-            ArrayList<TeamChar> OwnTeam = new ArrayList<TeamChar>();
-            OwnTeam.add(new TeamChar(spinnerChar1.getSelectedItem().toString()));
-            OwnTeam.add(new TeamChar(spinnerChar2.getSelectedItem().toString()));
-            OwnTeam.add(new TeamChar(spinnerChar3.getSelectedItem().toString()));
-            OwnTeam.add(new TeamChar(spinnerChar4.getSelectedItem().toString()));
-            OwnTeam.add(new TeamChar(spinnerChar5.getSelectedItem().toString()));
-            squads.add(new haatTeam(teamName.getText().toString(), OwnTeam));
-
-            saveSquads();
-            Toast.makeText(this, "Team " + teamName.getText().toString() + " hinzugefügt", Toast.LENGTH_LONG).show();
-
-            showSquadUi();
-        } else if(v == findViewById(R.id.twVerwaltenButton)){
-
-            Spinner spinTWGebite = findViewById(R.id.twMainSpinner);
-            TWGebiet twGebiet = (TWGebiet)spinTWGebite.getSelectedItem();
-            currentTwGebiet = twGebiet;
-            showTwGebietUI(currentTwGebiet);
-
-        } else if(v == findViewById(R.id.twBefehlButton)) {
-            showTWCommandUi();
-        }else if(v == findViewById(R.id.twButtonTeamzurueck)){
-            showTWUi();
-        } else if(v == findViewById(R.id.twButtonTeamHinzu)){
-            if(currentTwGebiet.teams.size() < 17) {
-                Spinner spinMember = findViewById(R.id.twMemberSpinner);
-                MemberListe member = (MemberListe) spinMember.getSelectedItem();
-                showTWCharSelectorUI(member);
-            }else{
-                Toast.makeText(MainPage.this, "Es gehen Maximal 17 Teams!", Toast.LENGTH_SHORT).show();
-            }
         } else if(v == findViewById(R.id.twCommandButtonZurueck)){
             showTwGebietUI(currentTwGebiet);
         } else if(v == findViewById(R.id.twCharSelectorButtonHinzu)){
@@ -2202,4 +1631,5 @@ public class MainPage extends AppCompatActivity
 
         //ENDE
     }
+
 }
