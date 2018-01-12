@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Die Union</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Einstellungen</string>
+    <string name="save_settings">Speichern</string>
+    <string name="tw_verwalten">verwalten</string>
+    <string name="tw_zusammenfassung">zusammenfassung</string>
+    <string name="tw_add_team">hinzufügen</string>
+    <string name="tw_back">zurück</string>
+    <string name="tw_cancel">abbrechen</string>
+    <string name="tw_teams_added">Teams gesetzt :</string>
+    <string name="tw_gebiet">Gebiet :</string>
+    <string name="tw_member">Member :</string>
+    <string name="tw_save_png">Speichern (png)</string>
+    <string name="tw_delete">löschen</string>
+    <string name="load_data_new">Lade Daten neu...</string>
+    <string name="charsearch">Charaktersuche</string>
+    <string name="teamsearch">TeamSuche</string>
+    <string name="member_dot">Mitglied :</string>
+    <string name="mod_Healt">Gesundheit</string>
+    <string name="mod_Speed">Tempo</string>
+    <string name="mod_Potency">Effektivität</string>
+    <string name="mod_Tenacity">Zähigkeit</string>
+    <string name="mod_Protection">Schutz</string>
+    <string name="mod_Offense">Angriff</string>
+    <string name="mod_Defense">Abwehr</string>
+    <string name="mod_crit_chance">Krit. Chance</string>
+    <string name="mod_crit_avoidance">Krit. Ausweichen</string>
+    <string name="mod_crit_damage">Krit. Schaden</string>
+    <string name="mod_accuracy">Genauigkeit</string>
+
+</resources>

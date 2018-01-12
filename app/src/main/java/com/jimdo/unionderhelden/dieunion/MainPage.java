@@ -154,7 +154,7 @@ public class MainPage extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Lade Daten neu...", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, getResources().getString(R.string.load_data_new), Snackbar.LENGTH_LONG)
                         .setAction("HttpGet", null).show();
 
                 Thread thread2 = new Thread(new Runnable() {

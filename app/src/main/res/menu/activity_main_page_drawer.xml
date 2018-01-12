@@ -11,7 +11,7 @@
         <item
             android:id="@+id/nav_charsearch"
             android:icon="@drawable/obiwan"
-            android:title="Charaktersuche" />
+            android:title="@string/charsearch" />
         <item
             android:id="@+id/nav_legendary"
             android:icon="@drawable/lukeskywalker1"
@@ -27,7 +27,7 @@
         <item
             android:id="@+id/nav_squad"
             android:icon="@drawable/yoda"
-            android:title="TeamSuche" />
+            android:title="@string/teamsearch" />
         <item
             android:id="@+id/nav_tw"
             android:icon="@drawable/yoda"

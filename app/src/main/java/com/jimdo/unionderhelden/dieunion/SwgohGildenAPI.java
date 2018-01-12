@@ -4,6 +4,7 @@ package com.jimdo.unionderhelden.dieunion;
 
         import com.fasterxml.jackson.annotation.*;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SwgohGildenAPI {
     private SwgohCharakter[] grievous;
     private SwgohCharakter[] humanthug;
@@ -175,11 +176,17 @@ public class SwgohGildenAPI {
     private SwgohCharakter[] imperialprobedroid;
     private SwgohCharakter[] hothleia;
     private SwgohCharakter[] reyjeditraining;
+    private SwgohCharakter[] firstorderexecutioner;
 
     @JsonProperty("GRIEVOUS")
     public SwgohCharakter[] getGrievous() { return grievous; }
     @JsonProperty("GRIEVOUS")
     public void setGrievous(SwgohCharakter[] value) { this.grievous = value; }
+
+    @JsonProperty("FIRSTORDEREXECUTIONER")
+    public SwgohCharakter[] getfirstorderexecutioner() { return firstorderexecutioner; }
+    @JsonProperty("FIRSTORDEREXECUTIONER")
+    public void setfirstorderexecutioner(SwgohCharakter[] value) { this.firstorderexecutioner = value; }
 
     @JsonProperty("REYJEDITRAINING")
     public SwgohCharakter[] getReyjeditraining() { return reyjeditraining; }

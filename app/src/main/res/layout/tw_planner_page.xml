@@ -30,7 +30,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/twMainSpinner"
-        android:text="Verwalten" />
+        android:text="@string/tw_verwalten" />
 
     <Button
         android:id="@+id/twBefehlButton"
@@ -39,5 +39,5 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/twVerwaltenButton"
-        android:text="befehle erteilen" />
+        android:text="@string/tw_zusammenfassung" />
 </RelativeLayout>

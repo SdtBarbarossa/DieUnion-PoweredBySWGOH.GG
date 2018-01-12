@@ -166,6 +166,7 @@ public class SwgohApiToGildeninfosConverter {
         addCharsToInfos(swgohGildenApi.getWedgeantilles(), "Wedge Antilles", 17523);
         addCharsToInfos(swgohGildenApi.getWicket(), "Wicket", 19929);
         addCharsToInfos(swgohGildenApi.getZamwesell(), "Zam Wesell", 17523);
+        addCharsToInfos(swgohGildenApi.getfirstorderexecutioner(), "First Order Executioner", 16948);
 
         return thisInfos;
     }
@@ -179,7 +180,9 @@ public class SwgohApiToGildeninfosConverter {
                 Charakter charac = new Charakter();
                 charac.setName(charName);
                 charac.power = (int) item.getPower();
-                charac.setPerfekt((int) (item.getPower() / maxpower) * 100);
+                double tempPower = (double)charac.power/(double)maxpower;
+                double powerTemp = (tempPower*100);
+                charac.setPerfekt((int)powerTemp);
                 charac.besitzer = item.getPlayer();
                 charac.setGear((int) item.getGearLevel());
                 charac.setLevel((int) item.getLevel());

@@ -12,14 +12,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/twCommandButtonZurueck"
-        android:text="Member: " />
+        android:layout_alignParentTop="true"
+        android:text="@string/tw_member" />
 
     <TextView
         android:id="@+id/twCharSelectorMemberName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/twCommandButtonZurueck"
+        android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/textView3"
         android:text="SdtBarbarossa" />
 
@@ -27,23 +27,23 @@
         android:id="@+id/twCommandButtonZurueck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:text="zurück" />
+        android:text="@string/tw_back" />
 
     <Button
         android:id="@+id/twCharSelectorButtonHinzu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:text="Hinzufügen" />
+        android:text="@string/tw_add_team" />
 
     <ListView
         android:id="@+id/twCharSelectorListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView3" />
+        android:layout_below="@id/textView3"
+        android:layout_above="@+id/twCharSelectorButtonHinzu"/>
 
 </RelativeLayout>

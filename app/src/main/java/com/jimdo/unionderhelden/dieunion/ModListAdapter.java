@@ -56,17 +56,17 @@ public class ModListAdapter extends BaseAdapter {
 
         //Primärwert
         TextView txtPrimary = (TextView) vi.findViewById(R.id.primaryTextView);
-        txtPrimary.setText(data.get(position).PrimaryAttribut.replace("Health", "Gesundheit")
-                .replace("Speed", "Tempo")
-                .replace("Potency", "Stärke")
-                .replace("Tenacity", "Zähigkeit")
-                .replace("Protection", "Schutz")
-                .replace("Offense", "Angriff")
-                .replace("Defense", "Abwehr")
-                .replace("Critical Chance", "Krit. Chance")
-                .replace("Critical Avoidance", "Krit. Ausweichen")
-                .replace("Critical Damage", "Krit. Schaden")
-                .replace("Accuracy", "Effektivität"));
+        txtPrimary.setText(data.get(position).PrimaryAttribut.replace("Health", context.getResources().getString(R.string.mod_Healt))
+                .replace("Speed", context.getResources().getString(R.string.mod_Speed))
+                .replace("Potency", context.getResources().getString(R.string.mod_Potency))
+                .replace("Tenacity", context.getResources().getString(R.string.mod_Tenacity))
+                .replace("Protection", context.getResources().getString(R.string.mod_Protection))
+                .replace("Offense", context.getResources().getString(R.string.mod_Offense))
+                .replace("Defense", context.getResources().getString(R.string.mod_Defense))
+                .replace("Critical Chance", context.getResources().getString(R.string.mod_crit_chance))
+                .replace("Critical Avoidance", context.getResources().getString(R.string.mod_crit_avoidance))
+                .replace("Critical Damage", context.getResources().getString(R.string.mod_crit_damage))
+                .replace("Accuracy", context.getResources().getString(R.string.mod_accuracy)));
 
         //Sekundärwerte
         TextView txtSekundary = (TextView) vi.findViewById(R.id.sekundaryTextView);
@@ -74,17 +74,17 @@ public class ModListAdapter extends BaseAdapter {
         for(int z = 0 ; z < data.get(position).Attributes.size() ; z++){
                 Anzeige += data.get(position).Attributes.get(z) + "\n";
         }
-        txtSekundary.setText(Anzeige.replace("Health", "Gesundheit")
-                .replace("Speed", "Tempo")
-                .replace("Potency", "Effektivität")
-                .replace("Tenacity", "Zähigkeit")
-                .replace("Protection", "Schutz")
-                .replace("Offense", "Angriff")
-                .replace("Defense", "Abwehr")
-                .replace("Critical Chance", "Krit. Chance")
-                .replace("Critical Avoidance", "Krit. Ausweichen")
-                .replace("Critical Damage", "Krit. Schaden")
-                .replace("Accuracy", "Genauigkeit"));
+        txtSekundary.setText(Anzeige.replace("Health", context.getResources().getString(R.string.mod_Healt))
+                .replace("Speed", context.getResources().getString(R.string.mod_Speed))
+                .replace("Potency", context.getResources().getString(R.string.mod_Potency))
+                .replace("Tenacity", context.getResources().getString(R.string.mod_Tenacity))
+                .replace("Protection", context.getResources().getString(R.string.mod_Protection))
+                .replace("Offense", context.getResources().getString(R.string.mod_Offense))
+                .replace("Defense", context.getResources().getString(R.string.mod_Defense))
+                .replace("Critical Chance", context.getResources().getString(R.string.mod_crit_chance))
+                .replace("Critical Avoidance", context.getResources().getString(R.string.mod_crit_avoidance))
+                .replace("Critical Damage", context.getResources().getString(R.string.mod_crit_damage))
+                .replace("Accuracy", context.getResources().getString(R.string.mod_accuracy)));
 
         //Bild
         ImageView modImage = (ImageView) vi.findViewById(R.id.modImage);

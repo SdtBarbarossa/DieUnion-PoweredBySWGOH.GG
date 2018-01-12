@@ -417,6 +417,8 @@ public class Charakter {
                 return R.drawable.charui_ewok_wicket;
             case "Zam Wesell":
                 return R.drawable.charui_zamwesell;
+            case "First Order Executioner":
+                return R.drawable.charui_firstorder_executioner;
             default:
                 break;
         }

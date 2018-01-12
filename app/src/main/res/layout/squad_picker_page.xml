@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:text="Abbrechen" />
+        android:text="@android:string/cancel" />
 
     <Button
         android:id="@+id/SquadPickerButtonAdd"
@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:text="Hinzufügen" />
+        android:text="@string/tw_add_team" />
 
     <TextView
         android:id="@+id/textViewTeamName"

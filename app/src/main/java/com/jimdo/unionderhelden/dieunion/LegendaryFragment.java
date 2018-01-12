@@ -191,8 +191,8 @@ public class LegendaryFragment extends Fragment implements AdapterView.OnItemSel
 
                         ImageView gearImage = (ImageView)nowView.findViewById(R.id.gearImage1);
 
-                        if(CLSList.get(position).gearImageID() != 0)
-                            gearImage.setImageResource(CLSList.get(position).gearImageID());
+                        if(CLSList.get(i).gearImageID() != 0)
+                            gearImage.setImageResource(CLSList.get(i).gearImageID());
 
                         ArrayList<ImageView> imageStarList = new ArrayList<ImageView>();
                         imageStarList.add((ImageView) nowView.findViewById(R.id.nostar11));
@@ -300,8 +300,8 @@ public class LegendaryFragment extends Fragment implements AdapterView.OnItemSel
 
                         ImageView gearImage = (ImageView)nowView.findViewById(R.id.gearImage1);
 
-                        if(ReyList.get(position).gearImageID() != 0)
-                            gearImage.setImageResource(ReyList.get(position).gearImageID());
+                        if(ReyList.get(i).gearImageID() != 0)
+                            gearImage.setImageResource(ReyList.get(i).gearImageID());
 
                         ArrayList<ImageView> imageStarList = new ArrayList<ImageView>();
                         imageStarList.add((ImageView) nowView.findViewById(R.id.nostar11));
@@ -414,8 +414,8 @@ public class LegendaryFragment extends Fragment implements AdapterView.OnItemSel
 
                         ImageView gearImage = (ImageView)nowView.findViewById(R.id.gearImage1);
 
-                        if(bb8List.get(position).gearImageID() != 0)
-                            gearImage.setImageResource(bb8List.get(position).gearImageID());
+                        if(bb8List.get(i).gearImageID() != 0)
+                            gearImage.setImageResource(bb8List.get(i).gearImageID());
 
                         ArrayList<ImageView> imageStarList = new ArrayList<ImageView>();
                         imageStarList.add((ImageView) nowView.findViewById(R.id.nostar11));
@@ -558,8 +558,8 @@ public class LegendaryFragment extends Fragment implements AdapterView.OnItemSel
 
                         ImageView gearImage = (ImageView)nowView.findViewById(R.id.gearImage1);
 
-                        if(r2List.get(position).gearImageID() != 0)
-                            gearImage.setImageResource(r2List.get(position).gearImageID());
+                        if(r2List.get(i).gearImageID() != 0)
+                            gearImage.setImageResource(r2List.get(i).gearImageID());
 
                         ArrayList<ImageView> imageStarList = new ArrayList<ImageView>();
                         imageStarList.add((ImageView) nowView.findViewById(R.id.nostar11));
@@ -684,8 +684,8 @@ public class LegendaryFragment extends Fragment implements AdapterView.OnItemSel
 
                         ImageView gearImage = (ImageView)nowView.findViewById(R.id.gearImage1);
 
-                        if(phoenixList.get(position).gearImageID() != 0)
-                            gearImage.setImageResource(phoenixList.get(position).gearImageID());
+                        if(phoenixList.get(i).gearImageID() != 0)
+                            gearImage.setImageResource(phoenixList.get(i).gearImageID());
 
 
                         ArrayList<ImageView> imageStarList = new ArrayList<ImageView>();

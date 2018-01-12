@@ -56,14 +56,14 @@ public class TWGebiteFragment extends Fragment implements View.OnClickListener {
 
         //ALLE Charaktere in der Liste
         ListView listGebietTeamsView = view.findViewById(R.id.gebietsListView);
-        listGebietTeamsView.setAdapter(new GebieteTeamListAdapter(getActivity().getBaseContext(), twGebiet.teams));
+        listGebietTeamsView.setAdapter(new GebieteTeamListAdapter(mainpage, twGebiet.teams));
 
         listGebietTeamsView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?>adapter,View v, int position, long l){
                 mainpage.currentTWTeamToDelete = (TWTeam) adapter.getItemAtPosition(position);
                 //
-                new AlertDialog.Builder(getActivity().getBaseContext())
+                new AlertDialog.Builder(mainpage)
                         .setTitle("Wirklich?")
                         .setMessage("Team von " + mainpage.currentTWTeamToDelete.charaktere.get(0).besitzer + " löschen?")
                         .setIcon(android.R.drawable.ic_dialog_alert)

@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/editTextGildenAPI"
-        android:text="Speichern" />
+        android:text="@string/save_settings" />
 
     <Button
         android:id="@+id/buttonCancel"
@@ -38,5 +38,5 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/editTextGildenAPI"
-        android:text="Abbrechen" />
+        android:text="@android:string/cancel" />
 </RelativeLayout>

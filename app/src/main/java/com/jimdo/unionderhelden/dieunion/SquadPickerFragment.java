@@ -206,17 +206,17 @@ public class SquadPickerFragment extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View v) {
 
-    if (v == getActivity().findViewById(R.id.SquadPickerButtonAbort)) {
+    if (v == mainpage.findViewById(R.id.SquadPickerButtonAbort)) {
             mainpage.showSquadUi();
-        } else if (v == getActivity().findViewById(R.id.SquadPickerButtonAdd)) {
+        } else if (v == mainpage.findViewById(R.id.SquadPickerButtonAdd)) {
 
-            Spinner spinnerChar1 = getActivity().findViewById(R.id.spinnerChar1);
-            Spinner spinnerChar2 = getActivity().findViewById(R.id.spinnerChar2);
-            Spinner spinnerChar3 = getActivity().findViewById(R.id.spinnerChar3);
-            Spinner spinnerChar4 = getActivity().findViewById(R.id.spinnerChar4);
-            Spinner spinnerChar5 = getActivity().findViewById(R.id.spinnerChar5);
+            Spinner spinnerChar1 = mainpage.findViewById(R.id.spinnerChar1);
+            Spinner spinnerChar2 = mainpage.findViewById(R.id.spinnerChar2);
+            Spinner spinnerChar3 = mainpage.findViewById(R.id.spinnerChar3);
+            Spinner spinnerChar4 = mainpage.findViewById(R.id.spinnerChar4);
+            Spinner spinnerChar5 = mainpage.findViewById(R.id.spinnerChar5);
 
-            EditText teamName = getActivity().findViewById(R.id.teamNameEditText);
+            EditText teamName = mainpage.findViewById(R.id.teamNameEditText);
 
             //GenereateTeam
             ArrayList<TeamChar> OwnTeam = new ArrayList<TeamChar>();
@@ -228,7 +228,7 @@ public class SquadPickerFragment extends Fragment implements View.OnClickListene
             squads.add(new haatTeam(teamName.getText().toString(), OwnTeam));
 
             saveSquads();
-            Toast.makeText(getActivity().getBaseContext(), "Team " + teamName.getText().toString() + " hinzugefügt", Toast.LENGTH_LONG).show();
+            Toast.makeText(mainpage, "Team " + teamName.getText().toString() + " hinzugefügt", Toast.LENGTH_LONG).show();
 
             mainpage.showSquadUi();
         }
