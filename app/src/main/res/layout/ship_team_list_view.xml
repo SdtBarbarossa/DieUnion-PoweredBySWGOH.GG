@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <include
+        android:id="@+id/capitalShip"
+        layout="@layout/ship_for_team_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/teamBesitzer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="Besitzer"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/txtPower"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/teamBesitzer"
+        android:text="Power: "
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/powerui"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/txtPower"
+        android:layout_toEndOf="@+id/txtPower"
+        android:textColor="@android:color/black"
+        android:text="0" />
+
+    <View
+        android:id="@+id/devidermain"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black"
+        android:layout_below="@id/capitalShip" />
+
+    <include
+        android:id="@+id/shipMain1"
+        layout="@layout/ship_for_team_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/devidermain"/>
+
+    <include
+        android:id="@+id/shipMain2"
+        layout="@layout/ship_for_team_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/shipMain1"
+        android:layout_marginLeft="10px"
+        android:layout_below="@id/devidermain"/>
+
+    <include
+        android:id="@+id/shipMain3"
+        layout="@layout/ship_for_team_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/shipMain2"
+        android:layout_marginLeft="10px"
+        android:layout_below="@id/devidermain"/>
+
+    <include
+        android:id="@+id/shipMain4"
+        layout="@layout/ship_for_team_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/shipMain3"
+        android:layout_marginLeft="10px"
+        android:layout_below="@id/devidermain"/>
+
+    <include
+        android:id="@+id/shipMain5"
+        layout="@layout/ship_for_team_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/shipMain4"
+        android:layout_marginLeft="10px"
+        android:layout_below="@id/devidermain"/>
+
+    <View
+        android:id="@+id/devidersupport"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black"
+        android:layout_below="@id/shipMain1" />
+
+    <include
+        android:id="@+id/shipsupport1"
+        layout="@layout/ship_for_team_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/devidersupport"/>
+
+    <include
+        android:id="@+id/shipsupport2"
+        layout="@layout/ship_for_team_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/shipsupport1"
+        android:layout_marginLeft="10px"
+        android:layout_below="@id/devidersupport"/>
+
+    <include
+        android:id="@+id/shipsupport3"
+        layout="@layout/ship_for_team_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/shipsupport2"
+        android:layout_marginLeft="10px"
+        android:layout_below="@id/devidersupport"/>
+
+    <include
+        android:id="@+id/shipsupport4"
+        layout="@layout/ship_for_team_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/shipsupport3"
+        android:layout_marginLeft="10px"
+        android:layout_below="@id/devidersupport"/>
+
+</RelativeLayout>

@@ -415,17 +415,27 @@ public class MainPage extends AppCompatActivity
             }catch(Exception ex){}
         } else if (id == R.id.nav_haat) {
             showAatUi();
-        } else if (id == R.id.nav_arena) {
-            showArenaUi();
-        } else if (id == R.id.nav_squad) {
+        }else if (id == R.id.nav_squad) {
             showSquadUi();
         } else if(id == R.id.nav_tw){
             showTWUi();
+        } else if(id == R.id.nav_fleet){
+            showFleetUi();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void showFleetUi(){
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FleetFragment fleetFragment = new FleetFragment();
+        fleetFragment.SetArguments(gildenInfos, this);
+        fragmentManager.beginTransaction().replace(R.id.mainFrame, fleetFragment).addToBackStack("showFleetUi").commit();
+        fragmentManager.executePendingTransactions();
+
     }
 
     public void showMainPage(){
@@ -651,6 +661,14 @@ public class MainPage extends AppCompatActivity
         SquadPickerFragment squadPickerFragment = new SquadPickerFragment();
         squadPickerFragment.SetArguments(gildenInfos, this);
         fragmentManager.beginTransaction().replace(R.id.mainFrame, squadPickerFragment).addToBackStack("SquadAdderUI").commit();
+        fragmentManager.executePendingTransactions();
+    }
+
+    public void showFleetAdderUi(){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FleetPickerFragment fleetPickerFragment = new FleetPickerFragment();
+        fleetPickerFragment.SetArguments(gildenInfos, this);
+        fragmentManager.beginTransaction().replace(R.id.mainFrame, fleetPickerFragment).addToBackStack("FleetAdderUI").commit();
         fragmentManager.executePendingTransactions();
     }
 

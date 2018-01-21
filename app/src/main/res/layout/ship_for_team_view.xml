@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/nostar11"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        app:srcCompat="@drawable/nostar" />
+
+    <ImageView
+        android:id="@+id/nostar21"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_toEndOf="@id/nostar11"
+        app:srcCompat="@drawable/nostar" />
+
+    <ImageView
+        android:id="@+id/nostar31"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_toEndOf="@id/nostar21"
+        app:srcCompat="@drawable/nostar" />
+
+    <ImageView
+        android:id="@+id/nostar41"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_toEndOf="@id/nostar31"
+        app:srcCompat="@drawable/nostar" />
+
+    <ImageView
+        android:id="@+id/nostar51"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_toEndOf="@id/nostar41"
+        app:srcCompat="@drawable/nostar" />
+
+    <ImageView
+        android:id="@+id/nostar61"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_toEndOf="@id/nostar51"
+        app:srcCompat="@drawable/nostar" />
+
+    <ImageView
+        android:id="@+id/nostar71"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_toEndOf="@id/nostar61"
+        app:srcCompat="@drawable/nostar" />
+
+    <ImageView
+        android:id="@+id/shipImage1"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_below="@+id/nostar11"
+        app:srcCompat="@mipmap/ic_launcher_round" />
+
+    <TextView
+        android:id="@+id/lvltext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/shipImage1"
+        android:text="L"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/lvl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/shipImage1"
+        android:layout_toEndOf="@id/lvltext"
+        android:text="00"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:id="@+id/perfektheittext1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/shipImage1"
+        android:layout_marginStart="31dp"
+        android:text="P"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/perfektheit1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/shipImage1"
+        android:layout_toEndOf="@+id/perfektheittext1"
+        android:text="00"
+        android:textColor="@android:color/black" />
+
+
+</RelativeLayout>

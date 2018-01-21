@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:id="@+id/SquadPickerPage">
+
+    <Spinner
+        android:id="@+id/spinnerCapital"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtCapital"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/spinner_spiegel_blue" />
+
+    <Spinner
+        android:id="@+id/spinnerShipMain1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtMainFleet"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/spinner_spiegel_blue" />
+
+    <Spinner
+        android:id="@+id/spinnerShipMain2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinnerShipMain1"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/spinner_spiegel_blue" />
+
+    <Spinner
+        android:id="@+id/spinnerShipMain3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinnerShipMain2"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/spinner_spiegel_blue" />
+
+    <Spinner
+        android:id="@+id/spinnerShipMain4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinnerShipMain3"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/spinner_spiegel_blue" />
+
+    <Spinner
+        android:id="@+id/spinnerShipMain5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinnerShipMain4"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/spinner_spiegel_blue" />
+
+    <Spinner
+        android:id="@+id/spinnerShipSupport1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtSupportFleet"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/spinner_spiegel_blue" />
+
+    <Spinner
+        android:id="@+id/spinnerShipSupport2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinnerShipSupport1"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/spinner_spiegel_blue" />
+
+    <Spinner
+        android:id="@+id/spinnerShipSupport3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinnerShipSupport2"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/spinner_spiegel_blue" />
+
+    <Spinner
+        android:id="@+id/spinnerShipSupport4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinnerShipSupport3"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/spinner_spiegel_blue" />
+
+    <Button
+        android:id="@+id/SquadPickerButtonAbort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:text="@android:string/cancel" />
+
+    <Button
+        android:id="@+id/SquadPickerButtonAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:text="@string/tw_add_team" />
+
+    <TextView
+        android:id="@+id/textViewTeamName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="Teamname :" />
+
+    <EditText
+        android:id="@+id/teamNameEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/textViewTeamName"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/txtCapital"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/teamNameEditText"
+        android:text="CapitalShip" />
+
+    <TextView
+        android:id="@+id/txtMainFleet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/spinnerCapital"
+        android:text="MainFleet" />
+
+    <TextView
+        android:id="@+id/txtSupportFleet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinnerShipMain5"
+        android:text="SupportFleet" />
+</RelativeLayout>

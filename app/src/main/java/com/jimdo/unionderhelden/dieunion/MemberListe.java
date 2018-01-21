@@ -23,6 +23,8 @@ public class MemberListe {
     private String memberName;
     @JsonProperty("Charakter")
     private List<Charakter> charakter = null;
+    @JsonProperty("Flotte")
+    private List<Ship> ships = null;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
     @JsonProperty("ArenaRang")
@@ -50,6 +52,16 @@ public class MemberListe {
         this.charakter = charakter;
     }
 
+    @JsonProperty("Flotte")
+    public List<Ship> getFlotte() {
+        return ships;
+    }
+
+    @JsonProperty("Flotte")
+    public void setFlotte(List<Ship> Ship) {
+        this.ships = Ship;
+    }
+
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
         return this.additionalProperties;
@@ -65,6 +77,18 @@ public class MemberListe {
         for(int i = 0 ; i < charakter.size(); i++){
             if(charakter.get(i).getName().equals(name)){
                 return charakter.get(i);
+            }
+        }
+
+        return null;
+
+    }
+
+    public Ship findShipByName(String name){
+
+        for(int i = 0 ; i < ships.size(); i++){
+            if(ships.get(i).getName().equals(name)){
+                return ships.get(i);
             }
         }
 

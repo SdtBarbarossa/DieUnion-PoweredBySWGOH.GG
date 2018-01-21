@@ -21,10 +21,6 @@
             android:icon="@drawable/aaticon"
             android:title="hAAT" />
         <item
-            android:id="@+id/nav_arena"
-            android:icon="@drawable/darthvader"
-            android:title="ArenaTeams" />
-        <item
             android:id="@+id/nav_squad"
             android:icon="@drawable/yoda"
             android:title="@string/teamsearch" />
@@ -32,6 +28,11 @@
             android:id="@+id/nav_tw"
             android:icon="@drawable/yoda"
             android:title="TW Planner" />
+
+        <item
+            android:id="@+id/nav_fleet"
+            android:icon="@drawable/xwing"
+            android:title="@string/nav_fleet" />
     </group>
 
 </menu>

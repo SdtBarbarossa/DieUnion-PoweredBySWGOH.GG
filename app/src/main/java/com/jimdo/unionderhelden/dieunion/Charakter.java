@@ -180,7 +180,7 @@ public class Charakter {
             case "Chief Chirpa":
                 return R.drawable.charui_ewok_chirpa;
             case "Chief Nebit":
-                return R.drawable.charui_ewok_chief;
+                return R.drawable.charui_jawa_nebit;
             case "Chirrut Îmwe":
                 return R.drawable.charui_chirrut;
             case "Chopper":

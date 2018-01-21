@@ -168,6 +168,40 @@ public class SwgohApiToGildeninfosConverter {
         addCharsToInfos(swgohGildenApi.getZamwesell(), "Zam Wesell", 17523);
         addCharsToInfos(swgohGildenApi.getfirstorderexecutioner(), "First Order Executioner", 16948);
 
+        //All ships to MemberListe
+        addShipToInfos(swgohGildenApi.getJedistarfighterahsokatano(), "Ahsoka Tano's Jedi Starfighter", 42771);
+        addShipToInfos(swgohGildenApi.getXwingred3(), "Biggs Darklighter's X-wing", 41478);
+        addShipToInfos(swgohGildenApi.getUwingscarif(), "Bistan's U-wing", 50278);
+        addShipToInfos(swgohGildenApi.getUwingrogueone(), "Cassian's U-wing", 60630);
+        addShipToInfos(swgohGildenApi.getCapitalchimaera(), "Chimaera", 55320);
+        addShipToInfos(swgohGildenApi.getSwgohShip(), "Clone Sergeant's ARC-170", 41478);
+        addShipToInfos(swgohGildenApi.getCapitaljedicruiser(), "Endurance", 43202);
+        addShipToInfos(swgohGildenApi.getCapitalstardestroyer(), "Executrix", 55320);
+        addShipToInfos(swgohGildenApi.getTiefighterfosf(), "First Order SF TIE Fighter", 41478);
+        addShipToInfos(swgohGildenApi.getTiefighterfirstorder(), "First Order TIE Fighter", 46419);
+        addShipToInfos(swgohGildenApi.getGauntletstarfighter(), "Gauntlet Starfighter", 53526);
+        addShipToInfos(swgohGildenApi.getGeonosianstarfighter3(), "Geonosian Soldier's Starfighter", 41478);
+        addShipToInfos(swgohGildenApi.getGeonosianstarfighter2(), "Geonosian Spy's Starfighter", 41478);
+        addShipToInfos(swgohGildenApi.getGhost(), "Ghost", 57948);
+        addShipToInfos(swgohGildenApi.getCapitalmoncalamaricruiser(), "Home One", 43202);
+        addShipToInfos(swgohGildenApi.getTiefighterimperial(), "Imperial TIE Fighter", 41478);
+        addShipToInfos(swgohGildenApi.getJedistarfighterconsular(), "Jedi Consular's Starfighter", 41478);
+        addShipToInfos(swgohGildenApi.getCommandshuttle(), "Kylo Ren's Command Shuttle", 57241);
+        addShipToInfos(swgohGildenApi.getMillenniumfalconep7(), "Millennium Falcon (Ep VII)", 57550);
+        addShipToInfos(swgohGildenApi.getPhantom2(), "Phantom II", 55971);
+        addShipToInfos(swgohGildenApi.getBladeofdorin(), "Plo Koon's Jedi Starfighter", 42771);
+        addShipToInfos(swgohGildenApi.getXwingblackone(), "Poe Dameron's X-wing", 42771);
+        addShipToInfos(swgohGildenApi.getXwingresistance(), "Resistance X-wing", 41005);
+        addShipToInfos(swgohGildenApi.getArc170Rex(), "Rex's ARC-170", 42771);
+        addShipToInfos(swgohGildenApi.getSithinfiltrator(), "Scimitar", 48185);
+        addShipToInfos(swgohGildenApi.getSlave1(), "Slave I", 49949);
+        addShipToInfos(swgohGildenApi.getGeonosianstarfighter1(), "Sun Fac's Geonosian Starfighter", 42771);
+        addShipToInfos(swgohGildenApi.getTieadvanced(), "TIE Advanced x1", 48185);
+        addShipToInfos(swgohGildenApi.getTiereaper(), "TIE Reaper", 53526);
+        addShipToInfos(swgohGildenApi.getTiesilencer(), "TIE Silencer", 54890);
+        addShipToInfos(swgohGildenApi.getUmbaranstarfighter(), "Umbaran Starfighter", 48185);
+        addShipToInfos(swgohGildenApi.getXwingred2(), "Wedge Antilles's X-wing", 42771);
+
         return thisInfos;
     }
 
@@ -204,8 +238,48 @@ public class SwgohApiToGildeninfosConverter {
         MemberListe newMember = new MemberListe();
         newMember.setMemberName(charac.besitzer);
         ArrayList<Charakter> characList = new ArrayList<Charakter>();
+        newMember.setFlotte(new ArrayList<Ship>());
         characList.add(charac);
         newMember.setCharakter(characList);
+
+        thisInfos.getMemberListe().add(newMember);
+
+    }
+
+    private void addShipToInfos(SwgohShip[] nowship, String shipName, int maxpower) {
+
+        if(nowship == null)
+            return;
+
+        for (SwgohShip item : nowship) {
+            Ship ship = new Ship();
+            ship.setName(shipName);
+            ship.power = (int) item.getPower();
+            double tempPower = (double)ship.power/(double)maxpower;
+            double powerTemp = (tempPower*100);
+            ship.setPerfekt((int)powerTemp);
+            ship.besitzer = item.getPlayer();
+            ship.setLevel((int) item.getLevel());
+            ship.setSterne((int) item.getRarity());
+            shipToPlayer(ship);
+        }
+    }
+
+    private void shipToPlayer(Ship ship){
+
+        for(MemberListe member : thisInfos.getMemberListe()){
+            if(member.getMemberName().equals(ship.besitzer)){
+                member.getFlotte().add(ship);
+                return;
+            }
+        }
+
+        MemberListe newMember = new MemberListe();
+        newMember.setMemberName(ship.besitzer);
+        ArrayList<Ship> shipList = new ArrayList<Ship>();
+        shipList.add(ship);
+        newMember.setFlotte(shipList);
+        newMember.setCharakter(new ArrayList<Charakter>());
 
         thisInfos.getMemberListe().add(newMember);
 
