@@ -22,6 +22,9 @@ public class Einstellungen {
     @JsonProperty("GildenAPI")
     private String GildenAPI;
 
+    @JsonProperty("errorSettings")
+    private boolean errorSettings;
+
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -33,6 +36,16 @@ public class Einstellungen {
     @JsonProperty("GildenAPI")
     public void setGildenAPI(String GildenAPI) {
         this.GildenAPI = GildenAPI;
+    }
+
+    @JsonProperty("errorSettings")
+    public boolean geterrorSettings() {
+        return errorSettings;
+    }
+
+    @JsonProperty("errorSettings")
+    public void seterrorSettings(boolean errorSettings) {
+        this.errorSettings = errorSettings;
     }
 
     public Einstellungen(String GildenAPI){

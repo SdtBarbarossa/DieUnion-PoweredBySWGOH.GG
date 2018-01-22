@@ -25,6 +25,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -270,6 +271,9 @@ public class MainPage extends AppCompatActivity
                 throw new Exception("Keine Einstellungen gefunden");
 
         }catch(Exception ex) {
+            if(myEinstellungen.geterrorSettings()) {
+                Toast.makeText(this, "Fehler: " + ex.getMessage(), Toast.LENGTH_SHORT).show();
+            }
             myEinstellungen = new Einstellungen("");
             try {
                 //Object to JSON in String
@@ -285,6 +289,9 @@ public class MainPage extends AppCompatActivity
                 editor.putString("settingsJson", mapper.writeValueAsString(gildenInfos));
                 editor.commit();
             } catch (Exception exep) {
+                if(myEinstellungen.geterrorSettings()) {
+                    Toast.makeText(this, "Fehler: " + exep.getMessage(), Toast.LENGTH_SHORT).show();
+                }
                 exep.printStackTrace();
             }
         }
@@ -329,6 +336,7 @@ public class MainPage extends AppCompatActivity
                 GildenInfos myProduct = mapper.readValue(persistJson, GildenInfos.class);
                 gildenInfos = myProduct;
             }catch(Exception exeption){
+                exep.printStackTrace();
                 return false;
             }
 
@@ -442,6 +450,9 @@ public class MainPage extends AppCompatActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
         startPage startpage = new startPage();
         fragmentManager.beginTransaction().replace(R.id.mainFrame, startpage).addToBackStack("MainPage").commit();
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setVisibility(View.VISIBLE);
 
         Thread thread = new Thread(new Runnable() {
 
@@ -821,6 +832,8 @@ public class MainPage extends AppCompatActivity
         EinstellungenFragment einstellungen = new EinstellungenFragment();
         fragmentManager.beginTransaction().replace(R.id.mainFrame, einstellungen).addToBackStack("SettingsUi").commit();
         fragmentManager.executePendingTransactions();
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setVisibility(View.INVISIBLE);
 
         try {
             // Restore preferences
@@ -855,6 +868,11 @@ public class MainPage extends AppCompatActivity
 
         EditText editTextGildenAPI = findViewById(R.id.editTextGildenAPI);
         editTextGildenAPI.setText(myEinstellungen.getGildenAPI());
+
+        //CheckBoxErrors
+        CheckBox cbErrors = (CheckBox) findViewById(R.id.cbShowAllError);
+        cbErrors.setChecked(myEinstellungen.geterrorSettings());
+        cbErrors.setOnClickListener(this);
 
         //Abbrechen
         Button buttonCancel = (Button) findViewById(R.id.buttonCancel);
@@ -1645,6 +1663,10 @@ public class MainPage extends AppCompatActivity
             //Bitmap bitmap = ListViewToImageParser.getWholeListViewItemsToBitmap((ListView)findViewById(R.id.twCommandListView) ,getApplicationContext());
             Bitmap bitmap = ListViewToImageParser.screenshotBitmap((ListView)findViewById(R.id.twCommandListView));
             ListViewToImageParser.storeImage(bitmap,"twBefehle.png", getApplicationContext());
+        } else if(v == findViewById(R.id.cbShowAllError)){
+
+            CheckBox cbErrors = findViewById(R.id.cbShowAllError);
+            myEinstellungen.seterrorSettings(cbErrors.isChecked());
         }
 
         //ENDE

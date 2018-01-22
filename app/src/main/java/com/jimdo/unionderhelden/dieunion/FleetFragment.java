@@ -77,6 +77,9 @@ public class FleetFragment extends Fragment implements View.OnClickListener, Ada
             editor.putString("fleetJson", mapper.writeValueAsString(fleets));
             editor.commit();
         } catch (Exception exep) {
+            if(mainpage.myEinstellungen.geterrorSettings()) {
+                Toast.makeText(mainpage, "Fehler: " + exep.getMessage(), Toast.LENGTH_SHORT).show();
+            }
             exep.printStackTrace();
         }
 
@@ -94,6 +97,9 @@ public class FleetFragment extends Fragment implements View.OnClickListener, Ada
             if(fleets == null)
                 throw new Exception("fleets nicht gefunden");
         }catch(Exception ex) {
+            if(mainpage.myEinstellungen.geterrorSettings()) {
+                Toast.makeText(mainpage, "Fehler: " + ex.getMessage(), Toast.LENGTH_SHORT).show();
+            }
             if(fleets == null) {
                 ArrayList<fleetTeam> fleetTeams = new ArrayList<fleetTeam>();
 

@@ -79,6 +79,9 @@ public class SquadFragment extends Fragment implements View.OnClickListener, Ada
             editor.putString("squadsJson", mapper.writeValueAsString(squads));
             editor.commit();
         } catch (Exception exep) {
+            if(mainpage.myEinstellungen.geterrorSettings()) {
+                Toast.makeText(mainpage, "Fehler: " + exep.getMessage(), Toast.LENGTH_SHORT).show();
+            }
             exep.printStackTrace();
         }
 
@@ -96,6 +99,9 @@ public class SquadFragment extends Fragment implements View.OnClickListener, Ada
             if(squads == null)
                 throw new Exception("squads nicht gefunden");
         }catch(Exception ex) {
+            if(mainpage.myEinstellungen.geterrorSettings()) {
+                Toast.makeText(mainpage, "Fehler: " + ex.getMessage(), Toast.LENGTH_SHORT).show();
+            }
             if(squads == null) {
                 ArrayList<haatTeam> haatTeams = new ArrayList<haatTeam>();
                 //Rancor

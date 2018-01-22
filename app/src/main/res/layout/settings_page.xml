@@ -28,15 +28,23 @@
         android:id="@+id/buttonSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/editTextGildenAPI"
         android:text="@string/save_settings" />
 
     <Button
         android:id="@+id/buttonCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:text="@android:string/cancel" />
+
+    <CheckBox
+        android:id="@+id/cbShowAllError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/editTextGildenAPI"
-        android:text="@android:string/cancel" />
+        android:text="@string/settings_error" />
 </RelativeLayout>

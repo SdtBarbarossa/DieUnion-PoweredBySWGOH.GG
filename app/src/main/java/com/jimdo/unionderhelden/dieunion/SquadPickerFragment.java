@@ -246,6 +246,9 @@ public class SquadPickerFragment extends Fragment implements View.OnClickListene
             if(squads == null)
                 throw new Exception("squads nicht gefunden");
         }catch(Exception ex) {
+            if(mainpage.myEinstellungen.geterrorSettings()) {
+                Toast.makeText(mainpage, "Fehler: " + ex.getMessage(), Toast.LENGTH_SHORT).show();
+            }
             if(squads == null) {
                 ArrayList<haatTeam> haatTeams = new ArrayList<haatTeam>();
                 //Rancor
@@ -281,6 +284,9 @@ public class SquadPickerFragment extends Fragment implements View.OnClickListene
             editor.putString("squadsJson", mapper.writeValueAsString(squads));
             editor.commit();
         } catch (Exception exep) {
+            if(mainpage.myEinstellungen.geterrorSettings()) {
+                Toast.makeText(mainpage, "Fehler: " + exep.getMessage(), Toast.LENGTH_SHORT).show();
+            }
             exep.printStackTrace();
         }
 

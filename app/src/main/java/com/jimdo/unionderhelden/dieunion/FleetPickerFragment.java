@@ -174,6 +174,9 @@ public class FleetPickerFragment extends Fragment implements View.OnClickListene
             editor.putString("fleetJson", mapper.writeValueAsString(fleets));
             editor.commit();
         } catch (Exception exep) {
+            if(mainpage.myEinstellungen.geterrorSettings()) {
+                Toast.makeText(mainpage, "Fehler: " + exep.getMessage(), Toast.LENGTH_SHORT).show();
+            }
             exep.printStackTrace();
         }
 
@@ -191,6 +194,9 @@ public class FleetPickerFragment extends Fragment implements View.OnClickListene
             if(fleets == null)
                 throw new Exception("fleets nicht gefunden");
         }catch(Exception ex) {
+            if(mainpage.myEinstellungen.geterrorSettings()) {
+                Toast.makeText(mainpage, "Fehler: " + ex.getMessage(), Toast.LENGTH_SHORT).show();
+            }
             if(fleets == null) {
                 ArrayList<fleetTeam> fleetTeams = new ArrayList<fleetTeam>();
 
