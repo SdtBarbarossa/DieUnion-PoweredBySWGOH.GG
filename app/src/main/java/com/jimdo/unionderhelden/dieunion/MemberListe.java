@@ -31,6 +31,12 @@ public class MemberListe {
     public String ArenaRang;
     @JsonProperty("ArenaTeam")
     public ArrayList<String> ArenaTeam;
+    @JsonProperty("CharPower")
+    public int CharPower = 0;
+    @JsonProperty("FleetPower")
+    public int FleetPower = 0;
+    @JsonProperty("OverallPower")
+    public int OverallPower = 0;
 
     @JsonProperty("MemberName")
     public String getMemberName() {

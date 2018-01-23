@@ -2,6 +2,8 @@ package com.jimdo.unionderhelden.dieunion;
 
 import java.lang.reflect.Member;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -202,6 +204,9 @@ public class SwgohApiToGildeninfosConverter {
         addShipToInfos(swgohGildenApi.getUmbaranstarfighter(), "Umbaran Starfighter", 48185);
         addShipToInfos(swgohGildenApi.getXwingred2(), "Wedge Antilles's X-wing", 42771);
 
+
+        Collections.sort(thisInfos.getMemberListe(), new memberComparator(""));
+
         return thisInfos;
     }
 
@@ -231,6 +236,8 @@ public class SwgohApiToGildeninfosConverter {
         for(MemberListe member : thisInfos.getMemberListe()){
             if(member.getMemberName().equals(charac.besitzer)){
                 member.getCharakter().add(charac);
+                member.CharPower += charac.power;
+                member.OverallPower += charac.power;
                 return;
             }
         }
@@ -241,6 +248,8 @@ public class SwgohApiToGildeninfosConverter {
         newMember.setFlotte(new ArrayList<Ship>());
         characList.add(charac);
         newMember.setCharakter(characList);
+        newMember.CharPower += charac.power;
+        newMember.OverallPower += charac.power;
 
         thisInfos.getMemberListe().add(newMember);
 
@@ -270,6 +279,8 @@ public class SwgohApiToGildeninfosConverter {
         for(MemberListe member : thisInfos.getMemberListe()){
             if(member.getMemberName().equals(ship.besitzer)){
                 member.getFlotte().add(ship);
+                member.CharPower += ship.power;
+                member.OverallPower += ship.power;
                 return;
             }
         }
@@ -280,6 +291,9 @@ public class SwgohApiToGildeninfosConverter {
         shipList.add(ship);
         newMember.setFlotte(shipList);
         newMember.setCharakter(new ArrayList<Charakter>());
+
+        newMember.CharPower += ship.power;
+        newMember.OverallPower += ship.power;
 
         thisInfos.getMemberListe().add(newMember);
 

@@ -45,6 +45,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/editTextGildenAPI"
+        android:layout_below="@+id/spinnerSortBySettings"
         android:text="@string/settings_error" />
+
+    <TextView
+        android:id="@+id/sortbyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editTextGildenAPI"
+        android:text="Sort Member by:" />
+
+    <Spinner
+        android:id="@+id/spinnerSortBySettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/sortbyTextView"
+        android:background="@drawable/spinner_spiegel_blue" />
 </RelativeLayout>

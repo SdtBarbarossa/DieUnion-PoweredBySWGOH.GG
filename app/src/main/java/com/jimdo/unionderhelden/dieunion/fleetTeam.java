@@ -8,10 +8,10 @@ import java.util.ArrayList;
 
 public class fleetTeam {
 
-    String teamName;
-    String capitalShip;
-    ArrayList<String> smallShips;
-    ArrayList<String> supportShips;
+    public String teamName;
+    public String capitalShip;
+    public ArrayList<String> smallShips;
+    public ArrayList<String> supportShips;
 
     public fleetTeam(String teamname, String capitalShip, ArrayList<String> smallShips, ArrayList<String> supportShips){
         this.teamName = teamname;

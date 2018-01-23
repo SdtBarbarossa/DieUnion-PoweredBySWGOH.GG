@@ -22,6 +22,9 @@ public class Einstellungen {
     @JsonProperty("GildenAPI")
     private String GildenAPI;
 
+    @JsonProperty("playerSortSettings")
+    private String playerSortSettings;
+
     @JsonProperty("errorSettings")
     private boolean errorSettings;
 
@@ -36,6 +39,18 @@ public class Einstellungen {
     @JsonProperty("GildenAPI")
     public void setGildenAPI(String GildenAPI) {
         this.GildenAPI = GildenAPI;
+    }
+
+    @JsonProperty("playerSortSettings")
+    public String getplayerSortSettings() {
+        if(playerSortSettings != null){
+            return playerSortSettings;
+        } else{ return "";}
+    }
+
+    @JsonProperty("playerSortSettings")
+    public void setplayerSortSettings(String playerSortSettings) {
+        this.playerSortSettings = playerSortSettings;
     }
 
     @JsonProperty("errorSettings")

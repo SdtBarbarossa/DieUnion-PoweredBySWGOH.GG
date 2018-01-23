@@ -16,6 +16,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Collections;
+
 /**
  * Created by Alle on 16.11.2017.
  */
@@ -37,6 +39,8 @@ public class TWGebiteFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tw_gebite_page,
                 container, false);
+
+        Collections.sort(gildenInfos.getMemberListe(), new memberComparator(mainpage.myEinstellungen.getplayerSortSettings()));
 
         Spinner spinMember = view.findViewById(R.id.twMemberSpinner);
         ArrayAdapter adapter = new ArrayAdapter(getActivity().getBaseContext(),android.R.layout.simple_spinner_item, gildenInfos.getMemberListe());

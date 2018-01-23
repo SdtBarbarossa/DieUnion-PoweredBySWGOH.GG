@@ -36,6 +36,8 @@ public class LegendaryFragment extends Fragment implements AdapterView.OnItemSel
         View view = inflater.inflate(R.layout.legendary_page,
                 container, false);
 
+        Collections.sort(gildenInfos.getMemberListe(), new memberComparator(mainpage.myEinstellungen.getplayerSortSettings()));
+
         Spinner spinMember = view.findViewById(R.id.spinnerMember);
         ArrayAdapter adapter = new ArrayAdapter(getActivity().getBaseContext(),android.R.layout.simple_spinner_item, gildenInfos.getMemberListe());
         spinMember.setAdapter(adapter);

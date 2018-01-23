@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class haatTeam {
 
-    String teamName;
-    ArrayList<TeamChar> teamChars;
+    public String teamName;
+    public ArrayList<TeamChar> teamChars;
 
     public haatTeam(String teamname, ArrayList<TeamChar> teamchars){
         teamName = teamname;

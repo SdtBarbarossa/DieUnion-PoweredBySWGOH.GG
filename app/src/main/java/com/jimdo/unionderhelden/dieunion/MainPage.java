@@ -874,6 +874,32 @@ public class MainPage extends AppCompatActivity
         cbErrors.setChecked(myEinstellungen.geterrorSettings());
         cbErrors.setOnClickListener(this);
 
+        //SortbySettings
+        String[] sortByOptions = {"", "OGM", "CGM", "FGM", "Name"};
+
+        Spinner spinSortBy = findViewById(R.id.spinnerSortBySettings);
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this,   android.R.layout.simple_spinner_item, sortByOptions);
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
+        spinSortBy.setAdapter(spinnerArrayAdapter);
+
+        switch(myEinstellungen.getplayerSortSettings()){
+            case "OGM":
+                spinSortBy.setSelection(1);
+                break;
+            case "CGM":
+                spinSortBy.setSelection(2);
+                break;
+            case "FGM":
+                spinSortBy.setSelection(3);
+                break;
+            case "Name":
+                spinSortBy.setSelection(4);
+                break;
+            default:
+                spinSortBy.setSelection(0);
+                break;
+        }
+
         //Abbrechen
         Button buttonCancel = (Button) findViewById(R.id.buttonCancel);
         buttonCancel.setOnClickListener(this);
@@ -1624,8 +1650,10 @@ public class MainPage extends AppCompatActivity
         }else if(v == findViewById(R.id.buttonSave)) {
             EditText gildenAPIEdit = findViewById(R.id.editTextGildenAPI);
             String gildenAPI = gildenAPIEdit.getText().toString();
+            Spinner spinSortBy = findViewById(R.id.spinnerSortBySettings);
             if(gildenAPI != null && !gildenAPI.isEmpty()) {
                 myEinstellungen.setGildenAPI(gildenAPI);
+                myEinstellungen.setplayerSortSettings(spinSortBy.getSelectedItem().toString());
 
                     try {
                         //Object to JSON in String
