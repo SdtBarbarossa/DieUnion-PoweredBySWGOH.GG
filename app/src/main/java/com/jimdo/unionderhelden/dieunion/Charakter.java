@@ -1,6 +1,7 @@
 
 package com.jimdo.unionderhelden.dieunion;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -39,6 +40,10 @@ public class Charakter {
     public String besitzer;
     @JsonProperty("Power")
     public Integer power;
+    @JsonProperty("FarmLocations")
+    public String[] FarmLocations;
+    @JsonProperty("GearLevel")
+    public ArrayList<Gearlevel> gearlevels;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
